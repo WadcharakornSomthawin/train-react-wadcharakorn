@@ -5,43 +5,7 @@ import { getTreatmentTypeAll } from '../../../service/TreatmentType.Service';
 import { getOpenSchedulePublic } from '../../../service/OpenSchedule.Service';
 import ShowData from './ShowData';
 
-function MainBook ()  {
-    const [dataTreatment, setDataTreatment] = useState([]);
-    const [data, setData] = useState([]);
-  const [pagin, setPagin] = useState({
-    totalRow: 1,
-    pageSize: 10,
-    currentPage: 1,
-    totalPage: 1,
-  });
-
-    useEffect(() => {
-        fetchData(10, 1, '', '', '', '');
-        getTreatmentAll();
-      }, []);
-
-
-    async function getTreatmentAll() {
-        let res = await getTreatmentTypeAll();
-        if (res) {
-          if (res.statusCode === 200 && res.taskStatus) {
-            res.data.unshift({ id: '', name: 'ทั้งหมด' });
-            setDataTreatment(res.data);
-          }
-        }
-      }
-
-      // ฟังก์ชันดึงข้อมูลแบบแบ่งหน้า
-  async function fetchData(pageSize, currentPage, search, treatment, startDate, endDate) {
-    let res = await getOpenSchedulePublic(pageSize, currentPage, search, treatment, startDate, endDate);
-    if (res) {
-      if (res.statusCode === 200 && res.taskStatus) {
-        setData(res.data);
-        setPagin(res.pagin);
-      }
-    }
-  }
-
+function MainHistory() {
   return (
     <Fragment>
         <div className="w-full">
@@ -73,7 +37,7 @@ function MainBook ()  {
           }}
           onSubmit={(value) => {
             console.log('submit :', value);
-             fetchData(pagin.pageSize, 1, value.search, value.treatment, value.startDate, value.endDate);
+             //fetchData(pagin.pageSize, 1, value.search, value.treatment, value.startDate, value.endDate);
           }}
         >
           {({ values, errors, touched, setFieldValue }) => (
@@ -95,8 +59,8 @@ function MainBook ()  {
                   <TextSelect
                     id="treatment"
                     name="treatment"
-                    options={dataTreatment}
-                    value={dataTreatment.filter((a) => a.id === values.treatment)}
+                    //options={dataTreatment}
+                    //value={dataTreatment.filter((a) => a.id === values.treatment)}
                     onChange={(item) => {
                       setFieldValue('treatment', item.id);
                     }}
@@ -136,7 +100,7 @@ function MainBook ()  {
                   type="reset"
                   className="btn btn-secondary mx-1"
                   onClick={() => {
-                    fetchData(10, 1, '', '', '', '');
+                    //fetchData(10, 1, '', '', '', '');
                   }}
                 >
                   <i className="fa-solid fa-rotate-left mx-1"></i>
@@ -145,13 +109,13 @@ function MainBook ()  {
               </div>
               <div className="w-full mt-5">
                 <ShowData
-                data={data}
-                pagin={pagin}
+                //data={data}
+                //pagin={pagin}
                 changePage={(page) => {
-                  fetchData(pagin.pageSize, page, values.search, values.treatment, values.startDate, values.endDate);
+                  //fetchData(pagin.pageSize, page, values.search, values.treatment, values.startDate, values.endDate);
                 }}
                 changePageSize={(pagesize) => {
-                  fetchData(pagesize, 1, values.search, values.treatment, values.startDate, values.endDate);
+                  //fetchData(pagesize, 1, values.search, values.treatment, values.startDate, values.endDate);
                 }}/>
               </div>
             </Form>
@@ -162,4 +126,4 @@ function MainBook ()  {
   )
 }
 
-export default MainBook
+export default MainHistory
