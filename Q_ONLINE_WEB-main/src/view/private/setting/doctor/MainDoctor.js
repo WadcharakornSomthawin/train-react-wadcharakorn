@@ -8,7 +8,6 @@ import { getTreatmentTypeAll } from '../../../../service/TreatmentType.Service';
 import { getDoctor, updateStatusDoctor, deleteDoctor } from '../../../../service/Doctor.Service';
 import Swal from 'sweetalert2';
 
-
 function MainDoctor() {
   const [dataTreatment, setDataTreatment] = useState([]);
   const [data, setData] = useState([]);
@@ -46,8 +45,8 @@ function MainDoctor() {
     }
   }
 
-   // ฟังก์ชันอัพเดทสถานะการใช้งาน
-   function updateStatus(id, data) {
+  // ฟังก์ชันอัพเดทสถานะการใช้งาน
+  function updateStatus(id, data) {
     Swal.fire({
       title: 'คุณต้องการอัพเดทสถานะรายการนี้ใช่หรือไม่ !',
       text: '',
@@ -82,7 +81,7 @@ function MainDoctor() {
     });
   }
 
-  // ฟังก์ชั่นลบแพทย์
+  // ฟังก์ชันลบ
   function deleteData(id) {
     Swal.fire({
       title: 'คุณต้องการลบรายการนี้ใช่หรือไม่ !',

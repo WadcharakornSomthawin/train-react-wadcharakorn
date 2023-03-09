@@ -1,8 +1,8 @@
-import React from "react";
-import { TextSelect } from "../../../../components/TextSelect";
-import PageSize from "../../../../data/pageSize.json";
-import Pagination from "react-js-pagination";
-import { useNavigate } from "react-router-dom";
+import React from 'react';
+import { TextSelect } from '../../../../components/TextSelect';
+import PageSize from '../../../../data/pageSize.json';
+import Pagination from 'react-js-pagination';
+import { useNavigate } from 'react-router-dom';
 
 function ShowData({ data, pagin, updateStatus, deleteData, changePage, changePageSize }) {
   const navigate = useNavigate();
@@ -28,7 +28,7 @@ function ShowData({ data, pagin, updateStatus, deleteData, changePage, changePag
             type="button"
             className="btn btn-success"
             onClick={() => {
-              navigate("/admin/doctor/form");
+              navigate('/admin/doctor/form');
             }}
           >
             <i className="fa-solid fa-plus mx-1"></i>
@@ -40,19 +40,19 @@ function ShowData({ data, pagin, updateStatus, deleteData, changePage, changePag
         <table className="table">
           <thead>
             <tr className="table-success">
-              <th scope="col" style={{ width: "5%" }}>
+              <th scope="col" style={{ width: '5%' }}>
                 ลำดับ
               </th>
-              <th scope="col" style={{ width: "30%" }}>
+              <th scope="col" style={{ width: '30%' }}>
                 ชื่อ-นามสกุล
               </th>
-              <th scope="col" style={{ width: "30%" }}>
+              <th scope="col" style={{ width: '30%' }}>
                 ประเภทการรักษา
               </th>
-              <th scope="col" style={{ width: "20%" }}>
+              <th scope="col" style={{ width: '20%' }}>
                 สถานะการใช้งาน
               </th>
-              <th scope="col" style={{ width: "15%" }}>
+              <th scope="col" style={{ width: '15%' }}>
                 จัดการ
               </th>
             </tr>
@@ -61,27 +61,23 @@ function ShowData({ data, pagin, updateStatus, deleteData, changePage, changePag
             {data.length === 0 ? (
               <tr>
                 <td colSpan={5}>
-                  <div className="text-center text-danger">
-                    -- ไม่พบข้อมูล --
-                  </div>
+                  <div className="text-center text-danger">-- ไม่พบข้อมูล --</div>
                 </td>
               </tr>
             ) : (
               data.map((item, index) => (
                 <tr key={item.id}>
-                  <td>
-                    {(pagin.currentPage - 1) * pagin.pageSize + (index + 1)}
-                  </td>
+                  <td>{(pagin.currentPage - 1) * pagin.pageSize + (index + 1)}</td>
                   <td>{item.fullname}</td>
                   <td>{item.treatment_type_name}</td>
-                  <td>{item.is_used === 1 ? "ใช้งาน" : "ไม่ใช้งาน"}</td>
+                  <td>{item.is_used === 1 ? 'ใช้งาน' : 'ไม่ใช้งาน'}</td>
                   <td>
                     {/* ปุ่มแก้ไข */}
                     <button
                       type="button"
                       className="btn btn-warning text-white mx-1 mt-1"
                       onClick={() => {
-                        navigate("/admin/doctor/form", { state: item.id });
+                        navigate('/admin/doctor/form', { state: item.id });
                       }}
                     >
                       <i className="fa-solid fa-pen-to-square"></i>
@@ -89,20 +85,12 @@ function ShowData({ data, pagin, updateStatus, deleteData, changePage, changePag
                     {/* ปุ่มอัพเดทสถานะการใช้งาน */}
                     <button
                       type="button"
-                      className={`btn text-white mx-1 mt-1 ${
-                        item.is_used === 1 ? "btn-danger" : "btn-success"
-                      }`}
+                      className={`btn text-white mx-1 mt-1 ${item.is_used === 1 ? 'btn-danger' : 'btn-success'}`}
                       onClick={() => {
-                        updateStatus(item.id, {
-                          status: item.is_used === 1 ? "0" : "1",
-                        });
+                        updateStatus(item.id, { status: item.is_used === 1 ? '0' : '1' });
                       }}
                     >
-                      {1 === 1 ? (
-                        <i className="fa-solid fa-lock"></i>
-                      ) : (
-                        <i className="fa-solid fa-lock-open"></i>
-                      )}
+                      {item.is_used === 1 ? <i className="fa-solid fa-lock"></i> : <i className="fa-solid fa-lock-open"></i>}
                     </button>
                     {/* ปุ่มลบข้อมูล */}
                     <button
