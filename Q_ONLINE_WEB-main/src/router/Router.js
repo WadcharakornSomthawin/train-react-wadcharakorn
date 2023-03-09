@@ -17,6 +17,7 @@ import FormUser from '../view/private/setting/user/form/FormUser';
 
 // public
 import FormRegister from '../view/authentication/register/FormRegister';
+import MainBook from '../view/public/book/MainBook';
 
 function Router(props) {
   const role = props.auth.role ? parseInt(props.auth.role) : 0; // 1 = admin, 0 = user
@@ -29,7 +30,7 @@ function Router(props) {
             <Routes>
               <Route path="/" element={<h1>หน้าแรก</h1>} />
               <Route path="/home" element={<h1>หน้าแรก</h1>} />
-              <Route path="/book-an-appointment" element={<h1>จองคิว</h1>} />
+              <Route path="/book-an-appointment" element={<MainBook />} />
               <Route path="/check-book-an-appointment" element={<h1>ตรวจสอบคิว</h1>} />
               <Route path="/register" element={<FormRegister />} />
               <Route path="*" element={<Redirect />} />
